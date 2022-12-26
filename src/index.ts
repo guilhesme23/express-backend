@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import router from './routes'
+import fileUpload from 'express-fileupload'
 
 dotenv.config()
 
@@ -15,6 +16,7 @@ const buildApp = (): express.Application => {
     const app = express();
     app.use(cors());
     app.use(express.json());
+    app.use(fileUpload())
     app.use(router);
 
     return app

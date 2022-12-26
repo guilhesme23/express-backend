@@ -1,4 +1,6 @@
 import { Request, Response } from "express";
+import { UploadedFile } from "express-fileupload";
+import { writeFile } from "fs";
 
 const users = [
     {
@@ -27,4 +29,21 @@ export const register = (req: Request, res: Response) => {
     console.log(user)
     users.push(user)
     return res.status(201).json(user)
+}
+
+export const uploadProfilePic = (req: Request, res: Response) => {
+    if (req.files != undefined) {
+        const file = req.files.readme as UploadedFile
+        writeFile('./tmp/readme.md', file.data, (err) => {
+            if (err) console.log(err)
+        })
+    } else {
+        return res.status(400).json({
+            message: 'file missing'
+        })
+    }
+
+    return res.status(200).json({
+        message: 'ok'
+    })
 }

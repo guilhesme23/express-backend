@@ -14,3 +14,14 @@ Content-Type: application/json
     "username": "user1",
     "id": "2345"
 }
+
+### Upload file
+POST /users/upload HTTP/1.1
+Host: localhost:9000
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="readme"; filename="README.md"
+
+< ../README.md
+--WebAppBoundary--
