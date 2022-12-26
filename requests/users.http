@@ -1,6 +1,16 @@
-# List users
+### List users
 GET /users HTTP/1.1
 Host: localhost:9000
 Content-Type: application/json
 
-###
+### Register user
+
+POST /users HTTP/1.1
+Host: localhost:9000
+Content-Type: application/json
+
+{
+    "email": "user1@email.com",
+    "username": "user1",
+    "id": "2345"
+}

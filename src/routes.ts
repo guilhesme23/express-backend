@@ -1,5 +1,5 @@
 import express from 'express'
-import { listUsers } from './controllers/users.controller'
+import * as UsersController from './controllers/users.controller'
 
 const router = express.Router()
 
@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
 })
 
 // Users resource
-router.get('/users', listUsers)
+router.get('/users', UsersController.listUsers)
+router.post('/users', UsersController.register)
 
 export default router
