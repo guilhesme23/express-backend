@@ -1,11 +1,12 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWFmMmVjNGQ3YTYyZDRlMDRiNmVjOCIsImVtYWlsIjoidXNlcjJAZW1haWwuY29tIiwiaWF0IjoxNjcyMTU2NjI4fQ.tM8kHt47MApO7yn1R0ROYinMpLtk_NY1LK0I1Fpw8Rw
+
 ### List users
 GET /users HTTP/1.1
 Host: localhost:9000
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYWFmMmVjNGQ3YTYyZDRlMDRiNmVjOCIsImVtYWlsIjoidXNlcjJAZW1haWwuY29tIiwiaWF0IjoxNjcyMTU2NjI4fQ.tM8kHt47MApO7yn1R0ROYinMpLtk_NY1LK0I1Fpw8Rw
+Authorization: {{token}}
 
 ### Register user
-
 POST /users HTTP/1.1
 Host: localhost:9000
 Content-Type: application/json
@@ -38,3 +39,9 @@ Content-Type: application/json
     "email": "user2@email.com",
     "password": "password"
 }
+
+### Get user
+GET /users/63aaf2ec4d7a62d4e04b6ec8 HTTP/1.1
+Host: localhost:9000
+Content-Type: application/json
+Authorization: {{token}}

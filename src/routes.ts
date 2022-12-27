@@ -15,5 +15,6 @@ router.get('/users', protectedRoute, UsersController.listUsers)
 router.post('/users', UsersController.register)
 router.post('/login', UsersController.login)
 router.post('/users/upload', UsersController.uploadProfilePic)
+router.get('/users/:id', UsersController.getUser)
 
 export default router
