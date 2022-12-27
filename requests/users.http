@@ -12,6 +12,7 @@ Content-Type: application/json
 {
     "email": "user1@email.com",
     "username": "user1",
+    "password": "password",
     "id": "2345"
 }
 
@@ -25,3 +26,13 @@ Content-Disposition: form-data; name="readme"; filename="README.md"
 
 < ../README.md
 --WebAppBoundary--
+
+### Login user
+POST /login HTTP/1.1
+Host: localhost:9000
+Content-Type: application/json
+
+{
+    "email": "user1@email.com",
+    "password": "password"
+}

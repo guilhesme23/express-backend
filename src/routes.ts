@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
 // Users resource
 router.get('/users', UsersController.listUsers)
 router.post('/users', UsersController.register)
+router.post('/login', UsersController.login)
 router.post('/users/upload', UsersController.uploadProfilePic)
 
 export default router
