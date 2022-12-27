@@ -8,7 +8,8 @@ import { RegisterUserDTO } from "../DTOs/user/register.dto";
 
 const users: IUser[] = []
 
-export const listUsers = (req: Request, res: Response) => {
+export const listUsers = async (req: Request, res: Response) => {
+    const users = await User.find().select('-password')
     return res.status(200).json(users)
 }
 
@@ -36,11 +37,15 @@ export const login = async (req: Request, res: Response) => {
         password: string
     }
 
-    const user = users.find(u => u.email == email)
+    const user = await User.findOne({
+        email
+    })
+
     if (user) {
         const result = await bcrypt.compare(password, user.password)
         if (result) {
             const jwt = generateAccessToken({
+                id: user._id,
                 email: user.email
             })
 
