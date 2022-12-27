@@ -3,12 +3,8 @@ import { UploadedFile } from "express-fileupload";
 import { writeFile } from "fs";
 import bcrypt from 'bcrypt'
 import { generateAccessToken } from "../utils/jwt";
-
-interface IUser {
-    email: string
-    id: string
-    password: string
-}
+import { IUser, User } from '../models/user.model'
+import { RegisterUserDTO } from "../DTOs/user/register.dto";
 
 const users: IUser[] = []
 
@@ -17,19 +13,21 @@ export const listUsers = (req: Request, res: Response) => {
 }
 
 export const register = async (req: Request, res: Response) => {
-    const user = req.body as {
-        email: string,
-        username: string,
-        password: string,
-        id: string
+    const user = req.body as RegisterUserDTO
+
+    const newUser = new User(user)
+
+    try {
+        newUser.password = await bcrypt.hash(newUser.password, 12);
+        await newUser.save()
+        return res.status(201).json(newUser)
+    } catch(err) {
+        console.log(err)
+        return res.status(400).json({
+            message: 'Error creating user'
+        })
     }
 
-    users.push({
-        ...user,
-        password: await bcrypt.hash(user.password, 12)
-    })
-
-    return res.status(201).json(user)
 }
 
 export const login = async (req: Request, res: Response) => {
@@ -43,7 +41,6 @@ export const login = async (req: Request, res: Response) => {
         const result = await bcrypt.compare(password, user.password)
         if (result) {
             const jwt = generateAccessToken({
-                id: user.id,
                 email: user.email
             })
 

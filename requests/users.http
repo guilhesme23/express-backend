@@ -11,8 +11,9 @@ Host: localhost:9000
 Content-Type: application/json
 
 {
-    "email": "user1@email.com",
-    "username": "user1",
+    "name": "John Doe",
+    "email": "user2@email.com",
+    "username": "user2",
     "password": "password",
     "id": "2345"
 }
