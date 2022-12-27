@@ -2,6 +2,7 @@
 GET /users HTTP/1.1
 Host: localhost:9000
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIzNDUiLCJlbWFpbCI6InVzZXIxQGVtYWlsLmNvbSIsImlhdCI6MTY3MjExMDQyM30.8VUOuvI8Q8R_yD2v_BnkQE7vex4vipk2ZDjm7YPr0G0
 
 ### Register user
 
