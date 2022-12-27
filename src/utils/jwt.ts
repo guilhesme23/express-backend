@@ -20,3 +20,7 @@ export const verifyToken = (token: string) => {
     const TOKEN_SECRET = getTokenSecret();
     return jwt.verify(token, TOKEN_SECRET)
 }
+
+export const getMe = (token: string): {id: string} => {
+    return jwt.decode(token) as {id: string, email: string}
+}

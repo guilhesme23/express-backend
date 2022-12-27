@@ -14,7 +14,8 @@ router.get('/', (req, res) => {
 router.get('/users', protectedRoute, UsersController.listUsers)
 router.post('/users', UsersController.register)
 router.post('/login', UsersController.login)
-router.post('/users/upload', UsersController.uploadProfilePic)
-router.get('/users/:id', UsersController.getUser)
+router.post('/users/upload', protectedRoute, UsersController.uploadProfilePic)
+router.get('/users/:id', protectedRoute, UsersController.getUser)
+router.delete('/users/:id', protectedRoute, UsersController.deleteUser)
 
 export default router
